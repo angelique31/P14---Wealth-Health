@@ -1,0 +1,20 @@
+.submitButtonContainer {
+    text-align: center;
+    padding-bottom: 50px;
+ }
+
+ .saveButton {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #93ad18;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+  }
+  
+  .saveButton:hover {
+    background-color: #5A6E07;
+  }
+  
