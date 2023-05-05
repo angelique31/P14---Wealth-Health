@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext } from "react";
+import EmployeeContext from "../../context/employeeContext";
 import StateSelect from "../../components/stateSelect/StateSelect";
 import DepartmentSelect from "../../components/DepartmentSelect/DepartmentSelect";
 import InputField from "../../components/InputField/InputField";
@@ -6,29 +7,37 @@ import styles from "../../pages/EmployeeForm/employeeForm.module.css";
 import NavBar from "../../components/NavBar/NavBar";
 import NavButtons from "../../components/NavButtons/NavButtons";
 import SaveButton from "../../components/SaveButton/SaveButton";
+import ValidationError from "../../components/ValidationError/ValidationError";
+import { validateEmployeeForm } from "../../components/FormValidation/formValidation";
 
 function EmployeeForm() {
-  const [employee, setEmployee] = useState({
-    firstName: "",
-    lastName: "",
-    dateOfBirth: "",
-    startDate: "",
-    department: "",
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
-  });
+  const { employee, setEmployee, errors, setErrors } =
+    useContext(EmployeeContext);
+
+  const validateForm = () => {
+    const newErrors = validateEmployeeForm(employee);
+
+    // if (employee.firstName.length < 2) {
+    //   newErrors.firstName = "First name should be at least 2 characters long";
+    // }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEmployee({ ...employee, [name]: value });
+    // Appeler validateForm lors de chaque modification de l'entrée pour mettre à jour les erreurs
+    validateForm();
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    saveEmployee();
-    // Afficher la fenêtre modale de confirmation
+    if (validateForm()) {
+      saveEmployee();
+      // Afficher la fenêtre modale de confirmation
+    }
   };
 
   const saveEmployee = () => {
@@ -52,6 +61,7 @@ function EmployeeForm() {
               value={employee.firstName}
               onChange={handleChange}
             />
+            {errors.firstName && <ValidationError message={errors.firstName} />}
             <InputField
               label="Last Name"
               type="text"
@@ -59,7 +69,7 @@ function EmployeeForm() {
               value={employee.lastName}
               onChange={handleChange}
             />
-
+            {errors.lastName && <ValidationError message={errors.lastName} />}
             <InputField
               label="Date of Birth"
               type="date"
