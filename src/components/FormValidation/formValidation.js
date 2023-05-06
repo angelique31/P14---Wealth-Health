@@ -15,29 +15,32 @@ export const validateEmployeeForm = (employee) => {
       "Last name should be at least 2 characters long."
     ),
     ...validateField(
+      "dateOfBirth",
+      employee.dateOfBirth,
+      3,
+      "Please enter your date of birth"
+    ),
+    ...validateField("startDate", employee.startDate, 3, "Please enter a date"),
+    ...validateField(
       "street",
-      employee.city,
+      employee.street,
       3,
-      "L'adresse doit contenir au moins 3 caractères."
+      "The address must contain at least 3 characters.."
     ),
-    ...validateField(
-      "city",
-      employee.city,
-      3,
-      "La ville doit contenir au moins 3 caractères."
-    ),
-    ...validateField(
-      "state",
-      employee.state,
-      2,
-      "L'Etat doit contenir au moins 2 caractères."
-    ),
+    ...validateField("city", employee.city, 3, "City is required"),
+    ...validateField("state", employee.state, 2, "Please choose a State"),
+
     ...validateField(
       "zipCode",
       employee.zipCode,
       5,
-      "Le code postal doit contenir au moins 5 caractères."
+      "Correct Zip Code is required."
     ),
-    // Ajoutez d'autres validations ici pour les autres champs...
+    ...validateField(
+      "department",
+      employee.department,
+      3,
+      "Please choose a department"
+    ),
   };
 };

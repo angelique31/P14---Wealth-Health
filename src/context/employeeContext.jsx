@@ -19,8 +19,16 @@ export function EmployeeProvider({ children }) {
   });
 
   const [errors, setErrors] = useState({});
+  const [showErrors, setShowErrors] = useState(false);
 
-  const value = { employee, setEmployee, errors, setErrors };
+  const value = {
+    employee,
+    setEmployee,
+    errors,
+    setErrors,
+    showErrors,
+    setShowErrors,
+  };
 
   return (
     <EmployeeContext.Provider value={value}>

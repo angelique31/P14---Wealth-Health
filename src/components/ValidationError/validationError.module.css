@@ -1,5 +1,13 @@
-.validationError {
+.departmentError {
+    position: relative;
+      bottom: -18px;
+      left: -218px;
+  }
+  
+  .validationError {
     color: red;
     font-size: 12px;
-    margin-top: -15px;
-}
+    margin-top: -28px;
+    font-style: italic;
+  }
+  
