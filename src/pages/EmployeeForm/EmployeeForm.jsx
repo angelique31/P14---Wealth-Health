@@ -1,15 +1,17 @@
 import { useContext, useEffect } from "react";
 import EmployeeContext from "../../context/employeeContext";
-import StateSelect from "../../components/stateSelect/StateSelect";
-import DepartmentSelect from "../../components/DepartmentSelect/DepartmentSelect";
-import InputField from "../../components/InputField/InputField";
-import NavBar from "../../components/NavBar/NavBar";
-import NavButtons from "../../components/NavButtons/NavButtons";
-import SaveButton from "../../components/SaveButton/SaveButton";
-import ValidationError from "../../components/ValidationError/ValidationError";
-import { validateEmployeeForm } from "../../components/FormValidation/formValidation";
+import { useNavigate } from "react-router-dom";
+
+import StateSelect from "../../components/CreatEmployee/StateSelect/StateSelect";
+import DepartmentSelect from "../../components/CreatEmployee/DepartmentSelect/DepartmentSelect";
+import InputField from "../../components/CreatEmployee/InputField/InputField";
+import NavBar from "../../components/CreatEmployee/NavBar/NavBar";
+import NavButtons from "../../components/CreatEmployee/NavButtons/NavButtons";
+import SaveButton from "../../components/CreatEmployee/SaveButton/SaveButton";
+import ValidationError from "../../components/CreatEmployee/ValidationError/ValidationError";
+import { validateEmployeeForm } from "../../components/CreatEmployee/FormValidation/formValidation";
 import styles from "../../pages/EmployeeForm/employeeForm.module.css";
-import validationStyles from "../../components/ValidationError/validationError.module.css";
+import validationStyles from "../../components/CreatEmployee/ValidationError/validationError.module.css";
 
 function EmployeeForm() {
   const {
@@ -19,41 +21,39 @@ function EmployeeForm() {
     setErrors,
     showErrors,
     setShowErrors,
+    addEmployee,
   } = useContext(EmployeeContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const newErrors = validateEmployeeForm(employee);
     setErrors(newErrors);
   }, [employee, setErrors]);
 
-  const validateForm = () => {
-    const newErrors = validateEmployeeForm(employee);
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEmployee({ ...employee, [name]: value });
-
-    // Appeler validateForm lors de chaque modification de l'entrée pour mettre à jour les erreurs
-    // validateForm();
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setShowErrors(true);
-    if (validateForm()) {
-      saveEmployee();
-      // Afficher la fenêtre modale de confirmation
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formErrors = validateEmployeeForm(employee);
+    setErrors(formErrors);
+
+    if (Object.keys(formErrors).length > 0) {
+      // Afficher les messages d'erreurs
+      setShowErrors(true);
+      return;
     }
-  };
+    // Utiliser addEmployee du contexte pour ajouter le nouvel employé
+    addEmployee(employee);
 
-  const saveEmployee = () => {
-    const employees = JSON.parse(localStorage.getItem("employees")) || [];
-    employees.push(employee);
-    localStorage.setItem("employees", JSON.stringify(employees));
+    // Ici, vous pouvez enregistrer l'employé dans le state global ou dans une base de données.
+
+    // Naviguer vers la page "ViewEmployees"
+    navigate("/view-employees");
   };
 
   return (

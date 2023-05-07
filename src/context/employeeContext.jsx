@@ -21,13 +21,40 @@ export function EmployeeProvider({ children }) {
   const [errors, setErrors] = useState({});
   const [showErrors, setShowErrors] = useState(false);
 
+  // gestion et mise à jour de la liste des employés
+  const [employees, setEmployees] = useState([]); //crée un état pour stocker la liste des employés
+  //addEmployee met à jour l'état des employés en ajoutant le nouvel employé (newEmployee) à la fin de la liste.
+  const addEmployee = (newEmployee) => {
+    setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
+  };
+
+  const resetEmployeeForm = () => {
+    setEmployee({
+      firstName: "",
+      lastName: "",
+      dateOfBirth: "",
+      startDate: "",
+      department: "",
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+    });
+    setErrors({});
+    setShowErrors(false);
+  };
+
   const value = {
     employee,
     setEmployee,
+    employees, //la liste des employés
+    setEmployees, //fonction qui met à jour cette liste
     errors,
     setErrors,
     showErrors,
     setShowErrors,
+    addEmployee,
+    resetEmployeeForm,
   };
 
   return (

@@ -1,4 +1,4 @@
-import { states } from "../../data/states";
+import { states } from "../../../data/states";
 import PropTypes from "prop-types";
 import styles from "../StateSelect/stateSelect.module.css";
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import styles from "../InputField/inputField.module.css";
+import styles from "./inputField.module.css";
 
 function InputField({ label, type, name, value, onChange, className }) {
   //état local maxDate pour stocker la date maximale autorisée

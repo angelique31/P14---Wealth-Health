@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import departments from "../../data/departmentsData";
+import departments from "../../../data/departmentsData";
 import styles from "../DepartmentSelect/departmentSelect.module.css";
 
 function DepartmentSelect({ name, value, onChange }) {
