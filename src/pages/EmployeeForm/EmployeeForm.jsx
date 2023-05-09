@@ -22,6 +22,7 @@ function EmployeeForm() {
     showErrors,
     setShowErrors,
     addEmployee,
+    resetEmployee,
   } = useContext(EmployeeContext);
 
   const navigate = useNavigate();
@@ -31,8 +32,20 @@ function EmployeeForm() {
     setErrors(newErrors);
   }, [employee, setErrors]);
 
+  //pour que les messages d'erreur n'apparaissent pas lors de l'arrivée de l'utilisateur sur le formulaire
+  useEffect(() => {
+    // Réinitialiser l'état showErrors lors du montage du composant
+    setShowErrors(false);
+
+    // Réinitialiser l'état showErrors lors du démontage du composant
+    return () => {
+      setShowErrors(false);
+    };
+  }, [setShowErrors]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setEmployee({ ...employee, [name]: value });
   };
 
@@ -42,15 +55,18 @@ function EmployeeForm() {
     const formErrors = validateEmployeeForm(employee);
     setErrors(formErrors);
 
-    if (Object.keys(formErrors).length > 0) {
+    // vérifier si toutes les valeurs d'erreurs sont vides:
+    if (Object.values(formErrors).some((error) => error !== "")) {
       // Afficher les messages d'erreurs
       setShowErrors(true);
       return;
     }
     // Utiliser addEmployee du contexte pour ajouter le nouvel employé
     addEmployee(employee);
+    //Utiliser resetEmployee du contexte  pour réinitialiser les valeurs de l'employé
+    resetEmployee();
 
-    // Ici, vous pouvez enregistrer l'employé dans le state global ou dans une base de données.
+    // Enregistrer l'employé dans le state global ou dans une base de données.
 
     // Naviguer vers la page "ViewEmployees"
     navigate("/view-employees");
@@ -59,12 +75,12 @@ function EmployeeForm() {
   return (
     <section>
       <NavBar />
-      {/* <NavButtons /> */}
       <NavButtons activePage="createEmployee" />
       <form onSubmit={handleSubmit}>
         <div className={styles.formContent}>
           <div className={styles.identityContent}>
             <InputField
+              autoFocus
               className={styles.inputText}
               label="First Name"
               type="text"
@@ -172,7 +188,8 @@ function EmployeeForm() {
           </label>
         </div>
 
-        <SaveButton />
+        {/* <SaveButton /> */}
+        <SaveButton onClick={handleSubmit} />
       </form>
     </section>
   );

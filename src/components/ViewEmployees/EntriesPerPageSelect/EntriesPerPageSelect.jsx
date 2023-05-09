@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { StyledDiv, StyledSelect } from "./PageSelectStyles";
 
 function EntriesPerPageSelect({ onEntriesChange }) {
   const handleSelectChange = (event) => {
@@ -6,16 +7,16 @@ function EntriesPerPageSelect({ onEntriesChange }) {
   };
 
   return (
-    <div>
+    <StyledDiv>
       <label>Show </label>
-      <select onChange={handleSelectChange}>
+      <StyledSelect onChange={handleSelectChange}>
         <option value="10">10</option>
         <option value="25">25</option>
         <option value="50">50</option>
         <option value="100">100</option>
-      </select>
+      </StyledSelect>
       <label> entries</label>
-    </div>
+    </StyledDiv>
   );
 }
 

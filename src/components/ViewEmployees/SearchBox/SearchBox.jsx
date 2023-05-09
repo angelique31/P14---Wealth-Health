@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { StyledSearchInput, StyledSearchContainer } from "./SearchBoxStyles";
 
 function SearchBox({ onSearch }) {
   const handleSearchChange = (event) => {
@@ -6,10 +7,14 @@ function SearchBox({ onSearch }) {
   };
 
   return (
-    <div>
-      <label>Search: </label>
-      <input type="search" onChange={handleSearchChange} />
-    </div>
+    <StyledSearchContainer>
+      <label>Search </label>
+      <StyledSearchInput
+        type="search"
+        onChange={handleSearchChange}
+        placeholder="Search any text or date"
+      />
+    </StyledSearchContainer>
   );
 }
 

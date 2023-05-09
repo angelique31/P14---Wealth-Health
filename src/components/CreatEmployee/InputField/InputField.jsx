@@ -3,7 +3,15 @@ import PropTypes from "prop-types";
 
 import styles from "./inputField.module.css";
 
-function InputField({ label, type, name, value, onChange, className }) {
+function InputField({
+  autoFocus,
+  label,
+  type,
+  name,
+  value,
+  onChange,
+  className,
+}) {
   //état local maxDate pour stocker la date maximale autorisée
   const [maxDate, setMaxDate] = useState("");
 
@@ -20,6 +28,7 @@ function InputField({ label, type, name, value, onChange, className }) {
     <label className={styles.label}>
       {label}
       <input
+        autoFocus={autoFocus}
         className={`${styles.input} ${className}`}
         type={type}
         name={name}
@@ -32,6 +41,7 @@ function InputField({ label, type, name, value, onChange, className }) {
 }
 
 InputField.propTypes = {
+  autoFocus: PropTypes.bool,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

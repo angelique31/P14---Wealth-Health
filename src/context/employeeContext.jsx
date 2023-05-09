@@ -28,20 +28,19 @@ export function EmployeeProvider({ children }) {
     setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
   };
 
-  const resetEmployeeForm = () => {
+  // EmployeeContext.js
+  const resetEmployee = () => {
     setEmployee({
       firstName: "",
       lastName: "",
       dateOfBirth: "",
       startDate: "",
-      department: "",
+      state: "",
       street: "",
       city: "",
-      state: "",
       zipCode: "",
+      department: "",
     });
-    setErrors({});
-    setShowErrors(false);
   };
 
   const value = {
@@ -54,7 +53,7 @@ export function EmployeeProvider({ children }) {
     showErrors,
     setShowErrors,
     addEmployee,
-    resetEmployeeForm,
+    resetEmployee,
   };
 
   return (
