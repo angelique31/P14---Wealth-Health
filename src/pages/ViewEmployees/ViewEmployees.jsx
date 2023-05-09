@@ -59,10 +59,21 @@ function ViewEmployees() {
   );
 
   const noDataComponent = (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <p>
-        Aucun employé trouvé. Veuillez ajouter des employés pour les afficher
-        ici.
+    // <div style={{ textAlign: "center", padding: "20px" }}>
+    <div
+      style={{
+        textAlign: "center",
+        padding: "20px",
+        backgroundColor: "#f5f5f5",
+        borderRadius: "8px",
+        marginTop: "50px",
+      }}
+    >
+      <p style={{ fontSize: "18px", marginBottom: "10px" }}>
+        🎉 Félicitations, vous avez atteint le point de départ ! 🎉
+      </p>
+      <p style={{ fontSize: "16px", lineHeight: "1.4" }}>
+        {`Il n'y a pas encore d'employés dans notre liste. Prenez les devants et commencez à ajouter des employés pour qu'ils apparaissent ici. 😊`}
       </p>
     </div>
   );
