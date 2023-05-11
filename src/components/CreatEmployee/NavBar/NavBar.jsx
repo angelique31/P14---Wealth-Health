@@ -1,17 +1,13 @@
-import styles from "../NavBar/navBar.module.css";
+import { Navbar, Logo, LogoImage } from "./NavBarStyles";
 
 function NavBar() {
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.logo}>
-        <img
-          className={styles.logoImage}
-          src="/assets/logo.PNG"
-          alt="logo du site"
-        />
+    <Navbar>
+      <Logo>
+        <LogoImage src="/assets/logo.PNG" alt="logo du site" />
         <h1>Wealth Health</h1>
-      </div>
-    </nav>
+      </Logo>
+    </Navbar>
   );
 }
 

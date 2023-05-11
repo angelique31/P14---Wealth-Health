@@ -10,8 +10,21 @@ import NavButtons from "../../components/CreatEmployee/NavButtons/NavButtons";
 import SaveButton from "../../components/CreatEmployee/SaveButton/SaveButton";
 import ValidationError from "../../components/CreatEmployee/ValidationError/ValidationError";
 import { validateEmployeeForm } from "../../components/CreatEmployee/FormValidation/formValidation";
-import styles from "../../pages/EmployeeForm/employeeForm.module.css";
-import validationStyles from "../../components/CreatEmployee/ValidationError/validationError.module.css";
+
+import {
+  ValidationErrorWrapper,
+  DepartmentErrorWrapper,
+} from "../../components/CreatEmployee/ValidationError/ValidationErrorStyles";
+
+import {
+  FormContent,
+  IdentityContent,
+  AddressContent,
+  Label,
+  DepartmentContainer,
+  DepartmentContainerLabel,
+  InputText,
+} from "./EmployeeFormStyles";
 
 function EmployeeForm() {
   const {
@@ -77,102 +90,116 @@ function EmployeeForm() {
       <NavBar />
       <NavButtons activePage="createEmployee" />
       <form onSubmit={handleSubmit}>
-        <div className={styles.formContent}>
-          <div className={styles.identityContent}>
-            <InputField
-              autoFocus
-              className={styles.inputText}
-              label="First Name"
-              type="text"
-              name="firstName"
-              value={employee.firstName}
-              onChange={handleChange}
-            />
+        <FormContent>
+          <IdentityContent>
+            <Label>
+              First Name
+              <InputField
+                autoFocus
+                as={InputText}
+                type="text"
+                name="firstName"
+                value={employee.firstName}
+                onChange={handleChange}
+              />
+            </Label>
             {showErrors && errors.firstName && (
               <ValidationError message={errors.firstName} />
             )}
 
-            <InputField
-              className={styles.inputText}
-              label="Last Name"
-              type="text"
-              name="lastName"
-              value={employee.lastName}
-              onChange={handleChange}
-            />
+            <Label>
+              Last Name
+              <InputField
+                as={InputText}
+                type="text"
+                name="lastName"
+                value={employee.lastName}
+                onChange={handleChange}
+              />
+            </Label>
             {showErrors && errors.lastName && (
               <ValidationError message={errors.lastName} />
             )}
-            <InputField
-              label="Date of Birth"
-              type="date"
-              name="dateOfBirth"
-              value={employee.dateOfBirth}
-              onChange={handleChange}
-            />
+            <Label>
+              Date of Birth
+              <InputField
+                type="date"
+                name="dateOfBirth"
+                value={employee.dateOfBirth}
+                onChange={handleChange}
+              />
+            </Label>
             {showErrors && errors.dateOfBirth && (
               <ValidationError message={errors.dateOfBirth} />
             )}
-            <InputField
-              label="Start Date"
-              type="date"
-              name="startDate"
-              value={employee.startDate}
-              onChange={handleChange}
-            />
+            <Label>
+              Start Date
+              <InputField
+                type="date"
+                name="startDate"
+                value={employee.startDate}
+                onChange={handleChange}
+              />
+            </Label>
             {showErrors && errors.startDate && (
               <ValidationError message={errors.startDate} />
             )}
-          </div>
-          <div className={styles.addressContent}>
-            <InputField
-              className={styles.inputText}
-              label="Street"
-              type="text"
-              name="street"
-              value={employee.street}
-              onChange={handleChange}
-            />
+          </IdentityContent>
+          <AddressContent>
+            <Label>
+              Street
+              <InputField
+                as={InputText}
+                type="text"
+                name="street"
+                value={employee.street}
+                onChange={handleChange}
+              />
+            </Label>
             {showErrors && errors.street && (
               <ValidationError message={errors.street} />
             )}
-            <InputField
-              className={styles.inputText}
-              label="City"
-              type="text"
-              name="city"
-              value={employee.city}
-              onChange={handleChange}
-            />
+            <Label>
+              City
+              <InputField
+                as={InputText}
+                type="text"
+                name="city"
+                value={employee.city}
+                onChange={handleChange}
+              />
+            </Label>
             {showErrors && errors.city && (
               <ValidationError message={errors.city} />
             )}
-            <label>
+            <Label>
               State
               <StateSelect
                 name="state"
                 value={employee.state}
                 onChange={handleChange}
               />
-            </label>
+            </Label>
             {showErrors && errors.state && (
               <ValidationError message={errors.state} />
             )}
-            <InputField
-              className={styles.inputText}
-              label="Zip code"
-              type="text"
-              name="zipCode"
-              value={employee.zipCode}
-              onChange={handleChange}
-            />
+            <Label>
+              Zip code
+              <InputField
+                as={InputText}
+                type="text"
+                name="zipCode"
+                value={employee.zipCode}
+                onChange={handleChange}
+              />
+            </Label>
             {showErrors && errors.zipCode && (
               <ValidationError message={errors.zipCode} />
             )}
-          </div>
-        </div>
-        <div className={styles.departmentContainer}>
-          <label>
+          </AddressContent>
+        </FormContent>
+        <DepartmentContainer>
+          <DepartmentContainerLabel>
             Département
             <DepartmentSelect
               name="department"
@@ -180,15 +207,15 @@ function EmployeeForm() {
               onChange={handleChange}
             />
             {showErrors && errors.department && (
-              <ValidationError
-                className={`${validationStyles.validationError} ${validationStyles.departmentError}`}
-                message={errors.department}
-              />
+              <ValidationErrorWrapper>
+                <DepartmentErrorWrapper>
+                  {errors.department}
+                </DepartmentErrorWrapper>
+              </ValidationErrorWrapper>
             )}
-          </label>
-        </div>
+          </DepartmentContainerLabel>
+        </DepartmentContainer>
 
-        {/* <SaveButton /> */}
         <SaveButton onClick={handleSubmit} />
       </form>
     </section>

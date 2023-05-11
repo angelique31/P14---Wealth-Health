@@ -1,33 +1,26 @@
-import { Link } from "react-router-dom";
-import styles from "../NavButtons/navButtons.module.css";
+import NavButtonsStyles from "./NavButtonsStyles";
 import PropTypes from "prop-types";
 
 const NavButtons = ({ activePage }) => {
   return (
-    <nav>
-      <div className={styles.navButtons}>
-        <Link to="/">
-          {/* <button className={styles.navButton}>Create Employee</button> */}
-          <button
-            className={`${styles.navButton} ${
-              activePage === "createEmployee" ? styles.activeNavButton : ""
-            }`}
+    <NavButtonsStyles.NavContainer>
+      <NavButtonsStyles.NavButtonsContainer>
+        <NavButtonsStyles.NavButtonLink to="/">
+          <NavButtonsStyles.NavButton
+            className={activePage === "createEmployee" ? "activeNavButton" : ""}
           >
             Create Employee
-          </button>
-        </Link>
-        <Link to="/view-employees">
-          {/* <button className={styles.navButton}>View Current Employees</button> */}
-          <button
-            className={`${styles.navButton} ${
-              activePage === "viewEmployees" ? styles.activeNavButton : ""
-            }`}
+          </NavButtonsStyles.NavButton>
+        </NavButtonsStyles.NavButtonLink>
+        <NavButtonsStyles.NavButtonLink to="/view-employees">
+          <NavButtonsStyles.NavButton
+            className={activePage === "viewEmployees" ? "activeNavButton" : ""}
           >
             View Current Employees
-          </button>
-        </Link>
-      </div>
-    </nav>
+          </NavButtonsStyles.NavButton>
+        </NavButtonsStyles.NavButtonLink>
+      </NavButtonsStyles.NavButtonsContainer>
+    </NavButtonsStyles.NavContainer>
   );
 };
 

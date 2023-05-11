@@ -1,22 +1,17 @@
 import PropTypes from "prop-types";
 import departments from "../../../data/departmentsData";
-import styles from "../DepartmentSelect/departmentSelect.module.css";
+import DepartmentSelectWrapper from "./DepartmentSelectStyles";
 
 function DepartmentSelect({ name, value, onChange }) {
   return (
-    <select
-      className={styles.departmentSelect}
-      name={name}
-      value={value}
-      onChange={onChange}
-    >
+    <DepartmentSelectWrapper name={name} value={value} onChange={onChange}>
       <option value="">Please choose a Department</option>
       {departments.map((department) => (
         <option key={department} value={department}>
           {department}
         </option>
       ))}
-    </select>
+    </DepartmentSelectWrapper>
   );
 }
 

@@ -1,13 +1,13 @@
-import styles from "../SaveButton/saveButton.module.css";
 import PropTypes from "prop-types";
+import SaveButtonStyles from "./SaveButtonStyles";
 
 const SaveButton = ({ onClick }) => {
   return (
-    <div className={styles.submitButtonContainer}>
-      <button type="submit" onClick={onClick} className={styles.saveButton}>
+    <SaveButtonStyles.SubmitButtonContainer>
+      <SaveButtonStyles.SaveButton type="submit" onClick={onClick}>
         Save
-      </button>
-    </div>
+      </SaveButtonStyles.SaveButton>
+    </SaveButtonStyles.SubmitButtonContainer>
   );
 };
 

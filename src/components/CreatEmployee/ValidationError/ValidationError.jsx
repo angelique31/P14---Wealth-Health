@@ -1,13 +1,16 @@
 import PropTypes from "prop-types";
-import styles from "./validationError.module.css";
+import ValidationErrorStyles from "./ValidationErrorStyles";
 
-// const ValidationError = ({ message }) => {
-//   return <span className={styles.validationError}>{message}</span>;
-// };
 function ValidationError({ message, className }) {
-  return (
-    <span className={`${styles.validationError} ${className}`}>{message}</span>
-  );
+  const { ValidationErrorWrapper, DepartmentErrorWrapper } =
+    ValidationErrorStyles;
+
+  const WrapperComponent =
+    className === "departmentError"
+      ? DepartmentErrorWrapper
+      : ValidationErrorWrapper;
+
+  return <WrapperComponent>{message}</WrapperComponent>;
 }
 
 ValidationError.propTypes = {

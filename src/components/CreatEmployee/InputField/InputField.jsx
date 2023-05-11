@@ -1,17 +1,9 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import styles from "./inputField.module.css";
+import { Input, Label } from "./InputFieldStyles";
 
-function InputField({
-  autoFocus,
-  label,
-  type,
-  name,
-  value,
-  onChange,
-  className,
-}) {
+function InputField({ autoFocus, label, type, name, value, onChange }) {
   //état local maxDate pour stocker la date maximale autorisée
   const [maxDate, setMaxDate] = useState("");
 
@@ -25,18 +17,17 @@ function InputField({
   }, [type, name]);
 
   return (
-    <label className={styles.label}>
+    <Label>
       {label}
-      <input
+      <Input
         autoFocus={autoFocus}
-        className={`${styles.input} ${className}`}
         type={type}
         name={name}
         value={value}
         onChange={onChange}
         max={name !== "startDate" ? maxDate : undefined}
       />
-    </label>
+    </Label>
   );
 }
 

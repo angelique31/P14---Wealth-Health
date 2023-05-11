@@ -59,7 +59,6 @@ function ViewEmployees() {
   );
 
   const noDataComponent = (
-    // <div style={{ textAlign: "center", padding: "20px" }}>
     <div
       style={{
         textAlign: "center",
