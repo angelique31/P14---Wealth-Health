@@ -100,7 +100,8 @@ function ViewEmployees() {
         subHeaderComponent={subHeaderComponent}
         subHeaderAlign="right"
         noDataComponent={noDataComponent}
-        customStyles={customStyles} // Ajoutez cette ligne
+        customStyles={customStyles}
+        // theme="myTheme"
       />
     </div>
   );
