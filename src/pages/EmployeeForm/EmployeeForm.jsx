@@ -103,6 +103,7 @@ function EmployeeForm() {
                 onChange={handleChange}
               />
             </Label>
+
             {showErrors && errors.firstName && (
               <ValidationError message={errors.firstName} />
             )}

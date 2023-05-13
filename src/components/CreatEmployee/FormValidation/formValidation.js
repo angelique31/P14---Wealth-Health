@@ -37,35 +37,34 @@ export const validateEmployeeForm = (employee) => {
       2,
       /^[a-zA-ZÀ-ÿ\s-]+$/i,
       "First name should be at least 2 characters long.",
-      "Seules les lettres et les espaces et les traits d'union sont autorisés."
+      "Only letters, spaces and hyphens are allowed."
     ),
     lastName: validateCustomField(
       employee.lastName,
       2,
       /^[a-zA-ZÀ-ÿ\s-]+$/i,
       "Last name should be at least 2 characters long.",
-      "Seules les lettres et les espaces et les traits d'union sont autorisés."
+      "Only letters, spaces and hyphens are allowed."
     ),
     street: validateCustomField(
       employee.street,
       3,
       /^[a-zA-Z0-9À-ÿ\s-]+$/i,
       "The address must contain at least 3 characters.",
-      "Seules les lettres, les chiffres, les espaces et les traits d'union sont autorisés."
+      "Only letters, numbers, spaces and hyphens are allowed."
     ),
     city: validateCustomField(
       employee.city,
       3,
       /^[a-zA-ZÀ-ÿ\s-]+$/i,
       "City is required",
-      "Seules les lettres, les espaces et les traits d'union sont autorisés."
+      "Only letters, spaces and hyphens are allowed."
     ),
     zipCode: validateCustomField(
       employee.zipCode,
       5,
       /^\d{5}$/,
-      "Le code postal doit contenir 5 chiffres.",
-      "Le code postal doit être composé uniquement de chiffres."
+      "The postal code must consist of five numbers only."
     ),
   };
 };

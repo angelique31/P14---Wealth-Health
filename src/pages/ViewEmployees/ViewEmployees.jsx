@@ -8,7 +8,7 @@ import NavButtons from "../../components/CreatEmployee/NavButtons/NavButtons";
 import EntriesPerPageSelect from "../../components/ViewEmployees/EntriesPerPageSelect/EntriesPerPageSelect";
 import SearchBox from "../../components/ViewEmployees/SearchBox/SearchBox";
 
-import styles from "../../pages/ViewEmployees/ViewEmployees.module.css";
+import Container from "./ViewEmployeeStyles";
 
 function ViewEmployees() {
   const { employees } = useContext(EmployeeContext);
@@ -52,10 +52,10 @@ function ViewEmployees() {
   };
 
   const subHeaderComponent = (
-    <div className={styles.container}>
+    <Container>
       <EntriesPerPageSelect onEntriesChange={handleEntriesChange} />
       <SearchBox onSearch={handleSearch} />
-    </div>
+    </Container>
   );
 
   const noDataComponent = (

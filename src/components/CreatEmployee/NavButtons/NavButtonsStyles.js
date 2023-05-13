@@ -13,6 +13,10 @@ export const NavButtonsContainer = styled.div`
   align-items: center;
   gap: 20px;
   margin-bottom: 100px;
+  @media (max-width: 810px) {
+    padding: 0px 50px;
+    flex-direction: column;
+  }
 `;
 
 export const NavButton = styled.button`
