@@ -59,6 +59,10 @@ function ViewEmployees() {
   const subHeaderComponent = (
     <Container>
       <EntriesPerPageSelect onEntriesChange={handleEntriesChange} />
+      {/* Add a button to toggle the display of mockData */}
+      <SmallerButton onClick={() => setShowMockData(!showMockData)}>
+        {showMockData ? "Show Sample Employees" : "Show Actual Employees"}
+      </SmallerButton>
       <SearchBox onSearch={handleSearch} />
     </Container>
   );
@@ -96,10 +100,7 @@ function ViewEmployees() {
     <div>
       <NavBar />
       <NavButtons activePage="viewEmployees" />
-      {/* Add a button to toggle the display of mockData */}
-      <SmallerButton onClick={() => setShowMockData(!showMockData)}>
-        {showMockData ? "Show Sample Employees" : "Show Actual Employees"}
-      </SmallerButton>
+
       <DataTable
         columns={columns}
         data={filteredEmployees}
@@ -111,7 +112,6 @@ function ViewEmployees() {
         subHeaderAlign="right"
         noDataComponent={noDataComponent}
         customStyles={customStyles}
-        // theme="myTheme"
       />
     </div>
   );

@@ -12,6 +12,9 @@ export const TableHeadStyle = createGlobalStyle`
   }
   .sc-dEsUz.bgFTUs {
     padding: 0 100px;
+    @media (max-width: 920px) {
+      padding: 0 30px;
+    }
   }
   .sc-hpGEOZ.hCXfxX.rdt_Pagination {
     padding: 0 88px;
@@ -28,17 +31,25 @@ export const Container = styled.div`
   padding: 0 20px 0 20px;
   font-family: Source Sans Pro, sans-serif;
   padding: 0px 100px 0px 100px;
-  @media (max-width: 810px) {
+  margin-top: 20px;
+  @media (max-width: 920px) {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 15px;
   }
 `;
 
 export const SmallerButton = styled(NavButton)`
   width: 187px;
-  margin-left: 100px;
+
   font-size: 0.8rem;
-  margin-bottom: 20px;
+  color: black;
+
+  background-color: rgb(245, 245, 245);
+  &:hover {
+    background-color: rgb(238, 238, 238);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 `;
