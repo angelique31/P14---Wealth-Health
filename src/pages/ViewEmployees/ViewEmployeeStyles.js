@@ -1,5 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+import { NavButton } from "../../components/CreatEmployee/NavButtons/NavButtonsStyles";
+
 export const TableHeadStyle = createGlobalStyle`
 .rdt_TableHeadRow {
     background-color: rgb(147, 173, 24); // Change la couleur de l'en tête
@@ -9,7 +11,7 @@ export const TableHeadStyle = createGlobalStyle`
     font-family: "Source Sans Pro", sans-serif;
   }
   .sc-dEsUz.bgFTUs {
-    padding: 0 100px !important;
+    padding: 0 100px;
   }
   .sc-hpGEOZ.hCXfxX.rdt_Pagination {
     padding: 0 88px;
@@ -19,7 +21,7 @@ export const TableHeadStyle = createGlobalStyle`
   
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,4 +36,9 @@ const Container = styled.div`
   }
 `;
 
-export default Container;
+export const SmallerButton = styled(NavButton)`
+  width: 187px;
+  margin-left: 100px;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+`;

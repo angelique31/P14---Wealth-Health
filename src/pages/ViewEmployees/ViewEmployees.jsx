@@ -2,22 +2,27 @@ import { useContext, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import EmployeeContext from "../../context/employeeContext";
 
+import users from "../../data/mockUser";
+
 import NavBar from "../../components/CreatEmployee/NavBar/NavBar";
 import NavButtons from "../../components/CreatEmployee/NavButtons/NavButtons";
 
 import EntriesPerPageSelect from "../../components/ViewEmployees/EntriesPerPageSelect/EntriesPerPageSelect";
 import SearchBox from "../../components/ViewEmployees/SearchBox/SearchBox";
 
-import Container from "./ViewEmployeeStyles";
+import { Container, SmallerButton } from "./ViewEmployeeStyles";
 
 function ViewEmployees() {
   const { employees } = useContext(EmployeeContext);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [perPage, setPerPage] = useState(10);
   const [searchText, setSearchText] = useState("");
+  // new state for controlling the display of mockData
+  const [showMockData, setShowMockData] = useState(false);
 
   useEffect(() => {
-    let filtered = employees;
+    // let filtered = employees;
+    let filtered = showMockData ? users : employees;
 
     if (searchText) {
       filtered = employees.filter((employee) =>
@@ -29,7 +34,7 @@ function ViewEmployees() {
     }
 
     setFilteredEmployees(filtered.slice(0, perPage));
-  }, [employees, searchText, perPage]);
+  }, [employees, searchText, perPage, showMockData]);
 
   const columns = [
     { name: "First Name", selector: "firstName" },
@@ -66,6 +71,7 @@ function ViewEmployees() {
         backgroundColor: "#f5f5f5",
         borderRadius: "8px",
         marginTop: "50px",
+        marginBottom: "50px",
       }}
     >
       <p style={{ fontSize: "18px", marginBottom: "10px" }}>
@@ -90,6 +96,10 @@ function ViewEmployees() {
     <div>
       <NavBar />
       <NavButtons activePage="viewEmployees" />
+      {/* Add a button to toggle the display of mockData */}
+      <SmallerButton onClick={() => setShowMockData(!showMockData)}>
+        {showMockData ? "Show Sample Employees" : "Show Actual Employees"}
+      </SmallerButton>
       <DataTable
         columns={columns}
         data={filteredEmployees}

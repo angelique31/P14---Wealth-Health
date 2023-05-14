@@ -20,7 +20,7 @@ export const NavButtonsContainer = styled.div`
 `;
 
 export const NavButton = styled.button`
-  font-size: 16px;
+  font-size: 1rem;
   padding: 10px 20px;
   background-color: #93ad18;
   color: #fff;
