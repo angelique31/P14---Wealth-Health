@@ -53,3 +53,18 @@ export const SmallerButton = styled(NavButton)`
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 `;
+
+export const NoDataContainer = styled.div`
+  text-align: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`;
+
+export const NoDataP = styled.p`
+  font-size: ${(props) => (props.large ? "18px" : "16px")};
+  margin-bottom: ${(props) => (props.large ? "10px" : "0")};
+  line-height: 1.4;
+`;

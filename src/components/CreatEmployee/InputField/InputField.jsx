@@ -33,12 +33,11 @@ function InputField({ autoFocus, label, type, name, value, onChange }) {
 
 InputField.propTypes = {
   autoFocus: PropTypes.bool,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,
-  className: PropTypes.string,
 };
 
 export default InputField;

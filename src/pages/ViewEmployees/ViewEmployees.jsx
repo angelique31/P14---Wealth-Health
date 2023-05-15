@@ -1,21 +1,47 @@
+// Bibliothèques externes
 import { useContext, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+
+// Contextes
 import EmployeeContext from "../../context/employeeContext";
 
+// Données
 import users from "../../data/mockUser";
 
+// Composants internes
 import NavBar from "../../components/CreatEmployee/NavBar/NavBar";
 import NavButtons from "../../components/CreatEmployee/NavButtons/NavButtons";
-
 import EntriesPerPageSelect from "../../components/ViewEmployees/EntriesPerPageSelect/EntriesPerPageSelect";
 import SearchBox from "../../components/ViewEmployees/SearchBox/SearchBox";
-
 import EmployeeDetailsModal from "../../components/ViewEmployees/EmployeeDetailsModal/EmployeeDetailsModal";
 
-import { Container, SmallerButton } from "./ViewEmployeeStyles";
+// Styles
+import {
+  Container,
+  SmallerButton,
+  NoDataContainer,
+  NoDataP,
+} from "./ViewEmployeeStyles";
+
+// Autres
+import {
+  smallScreenColumns,
+  largeScreenColumns,
+  verySmallScreenColumns,
+  verySmallScreenColumnsNoDept,
+} from "../../components/ViewEmployees/SizeScreenColumns/SizeScreenColumns";
 
 function ViewEmployees() {
+  /**
+   * Récupère les données des employés du contexte Employee.
+   */
   const { employees } = useContext(EmployeeContext);
+
+  /**
+   * Variables d'état pour contrôler l'affichage et la pagination des employés,
+   * la recherche d'employés, l'ouverture de la modale des détails de l'employé,
+   * l'employé sélectionné pour la modale, et la réactivité de l'écran.
+   */
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [perPage, setPerPage] = useState(10);
   const [searchText, setSearchText] = useState("");
@@ -26,15 +52,22 @@ function ViewEmployees() {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1100);
-
   const [isVerySmallScreen, setIsVerySmallScreen] = useState(
     window.innerWidth < 748
   );
+  const [isVeryTinyScreen, setIsVeryTinyScreen] = useState(
+    window.innerWidth < 465
+  );
 
+  /**
+   * Gestionnaires d'événements pour le redimensionnement de l'écran,
+   *
+   */
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 1100);
       setIsVerySmallScreen(window.innerWidth < 748);
+      setIsVeryTinyScreen(window.innerWidth < 465);
     };
 
     window.addEventListener("resize", handleResize);
@@ -44,98 +77,15 @@ function ViewEmployees() {
     };
   }, []);
 
-  const smallScreenColumns = [
-    {
-      name: "Name",
-      selector: (row) => `${row.firstName} ${row.lastName}`,
-      sortable: true,
-    },
-    {
-      name: "Start Date",
-      selector: (row) => `${row.startDate}`,
-      sortable: true,
-    },
-    {
-      name: "Department",
-      selector: (row) => `${row.department}`,
-      sortable: true,
-    },
-    {
-      name: "Date of Birth",
-      selector: (row) => row.dateOfBirth,
-      sortable: true,
-    },
-    {
-      name: "City & Street",
-      selector: (row) => `${row.city}, ${row.street}`,
-      sortable: true,
-    },
-    {
-      name: "State & Zip Code",
-      selector: (row) => `${row.state}, ${row.zipCode}`,
-      sortable: true,
-    },
-  ];
-
-  const largeScreenColumns = [
-    { name: "First Name", selector: (row) => row.firstName, sortable: true },
-    { name: "Last Name", selector: (row) => row.lastName, sortable: true },
-    {
-      name: "Start Date",
-      selector: (row) => `${row.startDate}`,
-      sortable: true,
-    },
-    {
-      name: "Department",
-      selector: (row) => `${row.department}`,
-      sortable: true,
-    },
-    {
-      name: "Date of Birth",
-      selector: (row) => row.dateOfBirth,
-      sortable: true,
-    },
-    { name: "Street", selector: (row) => row.street, sortable: true },
-    { name: "City", selector: (row) => row.city, sortable: true },
-    { name: "State", selector: (row) => row.state, sortable: true },
-    { name: "Zip Code", selector: (row) => row.zipCode, sortable: true },
-  ];
-
-  const handleRowClick = (row) => {
-    if (!isSmallScreen) return;
-
-    setSelectedEmployee(row);
-    setModalOpen(true);
-  };
-
-  const handleIconClick = (e, row) => {
-    e.stopPropagation(); // pour éviter le clic sur la ligne de la table
-    setSelectedEmployee(row);
-    setModalOpen(true);
-  };
-
-  const verySmallScreenColumns = [
-    {
-      name: "Name",
-      selector: (row) => `${row.firstName} ${row.lastName}`,
-      sortable: true,
-    },
-    { name: "Start Date", selector: (row) => row.startDate, sortable: true },
-    { name: "Department", selector: (row) => row.department, sortable: true },
-    {
-      name: "Details",
-      cell: (row) => <button onClick={(e) => handleIconClick(e, row)}></button>,
-      ignoreRowClick: true,
-      allowOverflow: true,
-      button: true,
-    },
-  ];
-
+  /**
+   * Gestionnaires d'événements pour filtrer les employés et choisir entre
+   * le fichier mockUser ou users réel,
+   */
   useEffect(() => {
     let filtered = showMockData ? users : employees;
-
+    //gestion de la recherche d'employés
     if (searchText) {
-      filtered = employees.filter((employee) =>
+      filtered = filtered.filter((employee) =>
         Object.values(employee)
           .join(" ")
           .toLowerCase()
@@ -154,6 +104,20 @@ function ViewEmployees() {
     setSearchText(newSearchText);
   };
 
+  //gestion du clic sur une ligne du tableau
+  const handleRowClick = (row) => {
+    if (!isSmallScreen) return;
+
+    setSelectedEmployee(row);
+    setModalOpen(true);
+  };
+  //gestion du clic sur l'icône pour ouvrir la modale
+  const handleIconClick = (e, row) => {
+    e.stopPropagation();
+    setSelectedEmployee(row);
+    setModalOpen(true);
+  };
+
   const subHeaderComponent = (
     <Container>
       <EntriesPerPageSelect onEntriesChange={handleEntriesChange} />
@@ -166,25 +130,15 @@ function ViewEmployees() {
   );
 
   const noDataComponent = (
-    <div
-      style={{
-        textAlign: "center",
-        padding: "20px",
-        backgroundColor: "#f5f5f5",
-        borderRadius: "8px",
-        marginTop: "50px",
-        marginBottom: "50px",
-      }}
-    >
-      <p style={{ fontSize: "18px", marginBottom: "10px" }}>
+    <NoDataContainer>
+      <NoDataP large>
         🎉 Félicitations, vous avez atteint le point de départ ! 🎉
-      </p>
-      <p style={{ fontSize: "16px", lineHeight: "1.4" }}>
+      </NoDataP>
+      <NoDataP>
         {`Il n'y a pas encore d'employés dans notre liste. Prenez les devants et commencez à ajouter des employés pour qu'ils apparaissent ici. 😊`}
-      </p>
-    </div>
+      </NoDataP>
+    </NoDataContainer>
   );
-
   // personnaliser le style du subHeader de la DataTable:
   const customStyles = {
     subHeader: {
@@ -211,8 +165,10 @@ function ViewEmployees() {
         customStyles={customStyles}
         onRowClicked={handleRowClick}
         columns={
-          isVerySmallScreen
-            ? verySmallScreenColumns
+          isVeryTinyScreen
+            ? verySmallScreenColumnsNoDept(handleIconClick)
+            : isVerySmallScreen
+            ? verySmallScreenColumns(handleIconClick)
             : isSmallScreen
             ? smallScreenColumns
             : largeScreenColumns
