@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const EmployeeContext = React.createContext();
@@ -21,8 +21,17 @@ export function EmployeeProvider({ children }) {
   const [errors, setErrors] = useState({});
   const [showErrors, setShowErrors] = useState(false);
 
+  // récupérer les employés du localStorage lors de l'initialisation
+  const initialEmployees = JSON.parse(localStorage.getItem("employees")) || [];
+
   // gestion et mise à jour de la liste des employés
-  const [employees, setEmployees] = useState([]); //crée un état pour stocker la liste des employés
+  const [employees, setEmployees] = useState(initialEmployees); //crée un état pour stocker la liste des employés
+
+  useEffect(() => {
+    // sauvegarder les employés dans le localStorage à chaque fois que 'employees' change
+    localStorage.setItem("employees", JSON.stringify(employees));
+  }, [employees]);
+
   //addEmployee met à jour l'état des employés en ajoutant le nouvel employé (newEmployee) à la fin de la liste.
   const addEmployee = (newEmployee) => {
     setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);

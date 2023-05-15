@@ -1,6 +1,7 @@
 // Bibliothèques externes
 import { useContext, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import { useNavigate } from "react-router-dom";
 
 // Contextes
 import EmployeeContext from "../../context/employeeContext";
@@ -21,6 +22,7 @@ import {
   SmallerButton,
   NoDataContainer,
   NoDataP,
+  StyledButton,
 } from "./ViewEmployeeStyles";
 
 // Autres
@@ -35,7 +37,7 @@ function ViewEmployees() {
   /**
    * Récupère les données des employés du contexte Employee.
    */
-  const { employees } = useContext(EmployeeContext);
+  const { employees, setEmployees } = useContext(EmployeeContext);
 
   /**
    * Variables d'état pour contrôler l'affichage et la pagination des employés,
@@ -58,7 +60,7 @@ function ViewEmployees() {
   const [isVeryTinyScreen, setIsVeryTinyScreen] = useState(
     window.innerWidth < 465
   );
-
+  const navigate = useNavigate();
   /**
    * Gestionnaires d'événements pour le redimensionnement de l'écran,
    *
@@ -117,6 +119,13 @@ function ViewEmployees() {
     setSelectedEmployee(row);
     setModalOpen(true);
   };
+
+  function handleClearData() {
+    localStorage.removeItem("employees");
+    // ou localStorage.clear(); si vous voulez effacer toutes les données
+    setEmployees([]); // aussi réinitialiser l'état des employés
+    navigate("/");
+  }
 
   const subHeaderComponent = (
     <Container>
@@ -179,6 +188,7 @@ function ViewEmployees() {
         onRequestClose={() => setModalOpen(false)}
         employee={selectedEmployee}
       />
+      <StyledButton onClick={handleClearData}>Log out</StyledButton>
     </div>
   );
 }

@@ -43,10 +43,8 @@ export const Container = styled.div`
 
 export const SmallerButton = styled(NavButton)`
   width: 187px;
-
   font-size: 0.8rem;
   color: black;
-
   background-color: rgb(245, 245, 245);
   &:hover {
     background-color: rgb(238, 238, 238);
@@ -67,4 +65,18 @@ export const NoDataP = styled.p`
   font-size: ${(props) => (props.large ? "18px" : "16px")};
   margin-bottom: ${(props) => (props.large ? "10px" : "0")};
   line-height: 1.4;
+`;
+
+export const StyledButton = styled.button`
+  font-size: 0.8rem;
+  padding: 10px 20px;
+  background-color: #da5c5c;
+  color: rgb(255, 255, 255);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+  position: relative;
+  margin-left: 100px;
 `;
