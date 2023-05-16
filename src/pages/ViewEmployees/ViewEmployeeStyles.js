@@ -46,7 +46,7 @@ export const SmallerButton = styled(NavButton)`
   font-size: 0.8rem;
   color: black;
   background-color: rgb(245, 245, 245);
-  box-shadow: 0px 0px 10px rgb(147, 173, 24);
+  box-shadow: 0px 0px 5px rgb(147, 173, 24);
   border: none;
   &:hover {
     background-color: rgb(147, 173, 24);
@@ -74,16 +74,22 @@ export const StyledButton = styled.button`
   padding: 10px 20px;
   background-color: rgb(245, 245, 245);
   color: black;
-  box-shadow: 0px 0px 10px rgb(147, 173, 24);
+  box-shadow: 0px 0px 5px rgb(147, 173, 24);
   border: none;
   cursor: pointer;
   transition: all 0.3s ease 0s;
   border-radius: 10px;
   position: relative;
-  margin-left: 100px;
-  margin-bottom: 50px;
+
   &:hover {
     background-color: rgb(147, 173, 24);
     color: white;
   }
+`;
+
+export const DivContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 50px;
 `;

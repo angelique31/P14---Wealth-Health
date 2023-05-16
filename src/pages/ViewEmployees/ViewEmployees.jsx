@@ -23,6 +23,7 @@ import {
   NoDataContainer,
   NoDataP,
   StyledButton,
+  DivContainer,
 } from "./ViewEmployeeStyles";
 
 // Autres
@@ -130,10 +131,6 @@ function ViewEmployees() {
   const subHeaderComponent = (
     <Container>
       <EntriesPerPageSelect onEntriesChange={handleEntriesChange} />
-      {/* Add a button to toggle the display of mockData */}
-      <SmallerButton onClick={() => setShowMockData(!showMockData)}>
-        {showMockData ? "Show Sample Employees" : "Show Actual Employees"}
-      </SmallerButton>
       <SearchBox onSearch={handleSearch} />
     </Container>
   );
@@ -188,7 +185,15 @@ function ViewEmployees() {
         onRequestClose={() => setModalOpen(false)}
         employee={selectedEmployee}
       />
-      <StyledButton onClick={handleClearData}>Log out</StyledButton>
+      <DivContainer>
+        {!showMockData && (
+          <StyledButton onClick={handleClearData}>Reset</StyledButton>
+        )}
+
+        <SmallerButton onClick={() => setShowMockData(!showMockData)}>
+          {showMockData ? "Show Sample Employees" : "Show Actual Employees"}
+        </SmallerButton>
+      </DivContainer>
     </div>
   );
 }
