@@ -4,6 +4,7 @@ export const Input = styled.input`
   border: none;
   border-bottom: 1px solid #000;
   width: 300px;
+  font-family: Source Sans Pro, sans-serif;
   // font-size: 1.3rem;
   @media (max-width: 530px) {
     width: 234px;

@@ -24,6 +24,7 @@ export const validateEmployeeForm = (employee) => {
       3,
       "Please enter your date of birth"
     ),
+
     ...validateField("startDate", employee.startDate, 3, "Please enter a date"),
     ...validateField("state", employee.state, 2, "Please choose a State"),
     ...validateField(
@@ -60,11 +61,15 @@ export const validateEmployeeForm = (employee) => {
       "City is required",
       "Only letters, spaces and hyphens are allowed."
     ),
-    zipCode: validateCustomField(
-      employee.zipCode,
-      5,
-      /^\d{5}$/,
-      "The postal code must consist of five numbers only."
-    ),
+    // zipCode: validateCustomField(
+    //   employee.zipCode,
+    //   5,
+    //   /^\d{5}$/,
+    //   "The postal code must consist of five numbers only."
+    // ),
+    zipCode:
+      employee.zipCode.trim().length !== 5 || !/^\d{5}$/.test(employee.zipCode)
+        ? "The postal code must consist of five numbers only."
+        : "",
   };
 };

@@ -42,13 +42,15 @@ export const Container = styled.div`
 `;
 
 export const SmallerButton = styled(NavButton)`
-  width: 187px;
+  width: 195px;
   font-size: 0.8rem;
   color: black;
   background-color: rgb(245, 245, 245);
+  box-shadow: 0px 0px 10px rgb(147, 173, 24);
+  border: none;
   &:hover {
-    background-color: rgb(238, 238, 238);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgb(147, 173, 24);
+    color: white;
   }
 `;
 
@@ -70,13 +72,18 @@ export const NoDataP = styled.p`
 export const StyledButton = styled.button`
   font-size: 0.8rem;
   padding: 10px 20px;
-  background-color: #da5c5c;
-  color: rgb(255, 255, 255);
+  background-color: rgb(245, 245, 245);
+  color: black;
+  box-shadow: 0px 0px 10px rgb(147, 173, 24);
   border: none;
   cursor: pointer;
   transition: all 0.3s ease 0s;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
   position: relative;
   margin-left: 100px;
+  margin-bottom: 50px;
+  &:hover {
+    background-color: rgb(147, 173, 24);
+    color: white;
+  }
 `;

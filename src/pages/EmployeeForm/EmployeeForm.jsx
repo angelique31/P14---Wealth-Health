@@ -45,8 +45,21 @@ function EmployeeForm() {
     setErrors(newErrors);
   }, [employee, setErrors]);
 
-  //pour que les messages d'erreur n'apparaissent pas lors de l'arrivée de l'utilisateur sur le formulaire
   useEffect(() => {
+    // Obtenez la date du jour
+    const today = new Date();
+    // Définir l'année à 18 ans en arrière
+    today.setFullYear(today.getFullYear() - 18);
+    // Convertir en format YYYY-MM-DD
+    const dateOfBirth = today.toISOString().substring(0, 10);
+
+    setEmployee((prev) => ({
+      ...prev,
+      dateOfBirth: prev.dateOfBirth || dateOfBirth,
+      startDate: prev.startDate || new Date().toISOString().substring(0, 10),
+    }));
+
+    //pour que les messages d'erreur n'apparaissent pas lors de l'arrivée de l'utilisateur sur le formulaire
     // Réinitialiser l'état showErrors lors du montage du composant
     setShowErrors(false);
 
@@ -54,7 +67,7 @@ function EmployeeForm() {
     return () => {
       setShowErrors(false);
     };
-  }, [setShowErrors]);
+  }, [setShowErrors, setEmployee]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -67,7 +80,7 @@ function EmployeeForm() {
 
     const formErrors = validateEmployeeForm(employee);
     setErrors(formErrors);
-
+    console.log(formErrors.zipCode);
     // vérifier si toutes les valeurs d'erreurs sont vides:
     if (Object.values(formErrors).some((error) => error !== "")) {
       // Afficher les messages d'erreurs
@@ -217,7 +230,7 @@ function EmployeeForm() {
           </DepartmentContainerLabel>
         </DepartmentContainer>
 
-        <SaveButton onClick={handleSubmit} />
+        <SaveButton onClick={() => {}} />
       </form>
     </section>
   );
