@@ -1,6 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import EmployeeContext from "../../context/employeeContext";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../components/CreatEmployee/PluginModale/PluginModale";
 
 import StateSelect from "../../components/CreatEmployee/StateSelect/StateSelect";
 import DepartmentSelect from "../../components/CreatEmployee/DepartmentSelect/DepartmentSelect";
@@ -39,6 +40,7 @@ function EmployeeForm() {
   } = useContext(EmployeeContext);
 
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const newErrors = validateEmployeeForm(employee);
@@ -80,7 +82,7 @@ function EmployeeForm() {
 
     const formErrors = validateEmployeeForm(employee);
     setErrors(formErrors);
-    console.log(formErrors.zipCode);
+
     // vérifier si toutes les valeurs d'erreurs sont vides:
     if (Object.values(formErrors).some((error) => error !== "")) {
       // Afficher les messages d'erreurs
@@ -92,10 +94,13 @@ function EmployeeForm() {
     //Utiliser resetEmployee du contexte  pour réinitialiser les valeurs de l'employé
     resetEmployee();
 
-    // Enregistrer l'employé dans le state global ou dans une base de données.
+    // Cacher les erreurs quand le modale est ouverte
+    setShowErrors(false);
 
-    // Naviguer vers la page "ViewEmployees"
-    navigate("/view-employees");
+    setIsModalOpen(true);
+  };
+  const handleModalClose = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -231,6 +236,17 @@ function EmployeeForm() {
         </DepartmentContainer>
 
         <SaveButton onClick={() => {}} />
+
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          title="Employee's data have been successfully stored!"
+          buttonLabel="Close"
+          onButtonClick={() => {
+            handleModalClose();
+            navigate("/view-employees");
+          }}
+        />
       </form>
     </section>
   );
