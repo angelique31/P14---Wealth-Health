@@ -138,10 +138,10 @@ function ViewEmployees() {
   const noDataComponent = (
     <NoDataContainer>
       <NoDataP large>
-        🎉 Félicitations, vous avez atteint le point de départ ! 🎉
+        {`🎉 Congratulations, you've reached the starting point! 🎉`}
       </NoDataP>
       <NoDataP>
-        {`Il n'y a pas encore d'employés dans notre liste. Prenez les devants et commencez à ajouter des employés pour qu'ils apparaissent ici. 😊`}
+        {`There are not yet any employees in our list. Take the initiative and start adding employees for them to appear here. 😊`}
       </NoDataP>
     </NoDataContainer>
   );
