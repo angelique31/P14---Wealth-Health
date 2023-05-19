@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import EmployeeContext from "../../context/employeeContext";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../components/CreatEmployee/PluginModal/PluginModal";
+// import Modal from "../../components/CreatEmployee/PluginModal/PluginModal";
 
 import StateSelect from "../../components/CreatEmployee/StateSelect/StateSelect";
 import DepartmentSelect from "../../components/CreatEmployee/DepartmentSelect/DepartmentSelect";
@@ -26,6 +26,8 @@ import {
   DepartmentContainerLabel,
   InputText,
 } from "./EmployeeFormStyles";
+
+import Modal from "angel1979-react-simple-modal";
 
 function EmployeeForm() {
   const {
