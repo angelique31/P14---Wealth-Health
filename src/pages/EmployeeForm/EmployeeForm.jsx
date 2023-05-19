@@ -110,13 +110,14 @@ function EmployeeForm() {
       <form onSubmit={handleSubmit}>
         <FormContent>
           <IdentityContent>
-            <Label>
+            <Label htmlFor="firstName">
               First Name
               <InputField
                 autoFocus
                 as={InputText}
                 type="text"
                 name="firstName"
+                id="firstName"
                 value={employee.firstName}
                 onChange={handleChange}
               />
@@ -126,12 +127,13 @@ function EmployeeForm() {
               <ValidationError message={errors.firstName} />
             )}
 
-            <Label>
+            <Label htmlFor="lastName">
               Last Name
               <InputField
                 as={InputText}
                 type="text"
                 name="lastName"
+                id="lastName"
                 value={employee.lastName}
                 onChange={handleChange}
               />
@@ -139,11 +141,12 @@ function EmployeeForm() {
             {showErrors && errors.lastName && (
               <ValidationError message={errors.lastName} />
             )}
-            <Label>
+            <Label htmlFor="dateOfBirth">
               Date of Birth
               <InputField
                 type="date"
                 name="dateOfBirth"
+                id="dateOfBirth"
                 value={employee.dateOfBirth}
                 onChange={handleChange}
               />
@@ -151,11 +154,12 @@ function EmployeeForm() {
             {showErrors && errors.dateOfBirth && (
               <ValidationError message={errors.dateOfBirth} />
             )}
-            <Label>
+            <Label htmlFor="startDate">
               Start Date
               <InputField
                 type="date"
                 name="startDate"
+                id="startDate"
                 value={employee.startDate}
                 onChange={handleChange}
               />
@@ -165,12 +169,13 @@ function EmployeeForm() {
             )}
           </IdentityContent>
           <AddressContent>
-            <Label>
+            <Label htmlFor="street">
               Street
               <InputField
                 as={InputText}
                 type="text"
                 name="street"
+                id="street"
                 value={employee.street}
                 onChange={handleChange}
               />
@@ -178,12 +183,13 @@ function EmployeeForm() {
             {showErrors && errors.street && (
               <ValidationError message={errors.street} />
             )}
-            <Label>
+            <Label htmlFor="city">
               City
               <InputField
                 as={InputText}
                 type="text"
                 name="city"
+                id="city"
                 value={employee.city}
                 onChange={handleChange}
               />
@@ -191,10 +197,11 @@ function EmployeeForm() {
             {showErrors && errors.city && (
               <ValidationError message={errors.city} />
             )}
-            <Label>
+            <Label htmlFor="state">
               State
               <StateSelect
                 name="state"
+                id="state"
                 value={employee.state}
                 onChange={handleChange}
               />
@@ -202,12 +209,13 @@ function EmployeeForm() {
             {showErrors && errors.state && (
               <ValidationError message={errors.state} />
             )}
-            <Label>
+            <Label htmlFor="zipCode">
               Zip code
               <InputField
                 as={InputText}
                 type="text"
                 name="zipCode"
+                id="zipCode"
                 value={employee.zipCode}
                 onChange={handleChange}
               />
@@ -218,10 +226,11 @@ function EmployeeForm() {
           </AddressContent>
         </FormContent>
         <DepartmentContainer>
-          <DepartmentContainerLabel>
+          <DepartmentContainerLabel htmlFor="department">
             Département
             <DepartmentSelect
               name="department"
+              id="department"
               value={employee.department}
               onChange={handleChange}
             />
