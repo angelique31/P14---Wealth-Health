@@ -5,23 +5,17 @@ export const Container = styled.div``;
 
 export const CenterPage = styled.div`
   text-align: center;
-  @media screen and (max-width: 400px) {
-    margin-top: 200px;
-  }
 `;
 
 export const TitleText = styled.p`
   color: rgb(147, 173, 24);
 
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   line-height: 66px;
   margin-bottom: 60px;
   @media screen and (max-width: 750px) {
     font-size: 1rem;
-  }
-  @media screen and (max-width: 400px) {
-    font-size: 0.8rem;
   }
 `;
 
@@ -31,9 +25,6 @@ export const TitleReturn = styled(NavLink)`
   font-weight: 600;
   padding-bottom: 80px;
   text-decoration: underline;
-  @media screen and (max-width: 400px) {
-    font-size: 0.7rem;
-  }
 `;
 
 const fall = keyframes`
@@ -44,15 +35,12 @@ const fall = keyframes`
 export const Title = styled.h1`
   color: rgb(245, 245, 245);
   font-weight: 700;
-  font-size: 18rem;
+  font-size: 14rem;
   margin-top: 66px;
 
   text-shadow: 0px 0px 10px rgb(147, 173, 24);
   @media screen and (max-width: 750px) {
-    font-size: 10rem;
-  }
-  @media screen and (max-width: 400px) {
-    font-size: 6rem;
+    font-size: 7rem;
   }
 `;
 
