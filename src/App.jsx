@@ -4,6 +4,7 @@ import EmployeeForm from "./pages/EmployeeForm/EmployeeForm";
 import ViewEmployees from "./pages/ViewEmployees/ViewEmployees";
 import "./assets/styles/global.css";
 import { TableHeadStyle } from "./pages/ViewEmployees/ViewEmployeeStyles";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<EmployeeForm />} />
           <Route path="/view-employees" element={<ViewEmployees />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </EmployeeProvider>
