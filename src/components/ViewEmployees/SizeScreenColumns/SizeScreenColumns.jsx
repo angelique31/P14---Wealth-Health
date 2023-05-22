@@ -1,5 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
+/**
+ * This file exports multiple arrays of objects representing the column configurations for different screen sizes.
+ * * Ce fichier exporte plusieurs tableaux d'objets représentant les configurations de colonnes pour différentes tailles d'écran.
+ *
+ * @param {function} handleIconClick - The function to call when the detail button in very small screen configurations is clicked. Only needed for verySmallScreenColumns and verySmallScreenColumnsNoDept exports.
+ */
+
 export const smallScreenColumns = [
   {
     name: "Name",

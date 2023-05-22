@@ -4,18 +4,21 @@ import {
   ModalContent,
   ButtonContainer,
   StyledH2,
-} from "./EmployeeDetailsModalStyles";
+} from "./EmployeeDetailsModal.styled";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle as lightCircleXmark } from "@fortawesome/free-regular-svg-icons";
 
+/**
+ * EmployeeDetailsModal is a modal component that displays details about an employee.
+ *
+ **/
 const EmployeeDetailsModal = ({ isOpen, onRequestClose, employee }) => {
   if (!employee) return null;
 
   const modalStyles = {
     content: {
       height: "400px",
-      // Ajoutez ici d'autres styles si nécessaire
     },
   };
   return (

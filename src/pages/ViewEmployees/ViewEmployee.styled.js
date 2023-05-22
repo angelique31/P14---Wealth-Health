@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-import { NavButton } from "../../components/CreatEmployee/NavButtons/NavButtonsStyles";
+import { NavButton } from "../../components/CreatEmployee/NavButtons/NavButtons.styled";
 
 export const TableHeadStyle = createGlobalStyle`
 .rdt_TableHeadRow {

@@ -1,4 +1,4 @@
-import NavButtonsStyles from "./NavButtonsStyles";
+import NavButtonsStyles from "./NavButtons.styled";
 import PropTypes from "prop-types";
 
 const NavButtons = ({ activePage }) => {

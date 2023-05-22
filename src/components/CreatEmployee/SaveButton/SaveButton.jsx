@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import SaveButtonStyles from "./SaveButtonStyles";
+import SaveButtonStyles from "./SaveButton.styled";
 
 const SaveButton = ({ onClick }) => {
   return (

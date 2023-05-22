@@ -1,7 +1,9 @@
+// Bibliothèques externes
 import { useContext, useEffect, useState } from "react";
 import EmployeeContext from "../../context/employeeContext";
 import { useNavigate } from "react-router-dom";
 
+// Composants internes
 import StateSelect from "../../components/CreatEmployee/StateSelect/StateSelect";
 import DepartmentSelect from "../../components/CreatEmployee/DepartmentSelect/DepartmentSelect";
 import InputField from "../../components/CreatEmployee/InputField/InputField";
@@ -11,11 +13,11 @@ import SaveButton from "../../components/CreatEmployee/SaveButton/SaveButton";
 import ValidationError from "../../components/CreatEmployee/ValidationError/ValidationError";
 import { validateEmployeeForm } from "../../components/CreatEmployee/FormValidation/formValidation";
 
+//Styles
 import {
   ValidationErrorWrapper,
   DepartmentErrorWrapper,
-} from "../../components/CreatEmployee/ValidationError/ValidationErrorStyles";
-
+} from "../../components/CreatEmployee/ValidationError/ValidationError.styled";
 import {
   FormContent,
   IdentityContent,
@@ -24,9 +26,21 @@ import {
   DepartmentContainer,
   DepartmentContainerLabel,
   InputText,
-} from "./EmployeeFormStyles";
+} from "./EmployeeForm.styled";
 
+// Librairie personnalisée
 import Modal from "angel1979-react-simple-modal";
+
+/**
+ * EmployeeForm is a functional React component that displays a form for inputting and validating employee data.
+ *
+ * @returns {React.Element} The rendered EmployeeForm component.
+ *
+ * Note:
+ * - The component uses the `EmployeeContext` to manage and manipulate the employee data state and related error states.
+ * - It validates the employee data, showing error messages when necessary, and uses the addEmployee function to add a new employee.
+ * - It uses a Modal to confirm successful form submission.
+ */
 
 function EmployeeForm() {
   const {
@@ -62,7 +76,7 @@ function EmployeeForm() {
       startDate: prev.startDate || new Date().toISOString().substring(0, 10),
     }));
 
-    //pour que les messages d'erreur n'apparaissent pas lors de l'arrivée de l'utilisateur sur le formulaire
+    // pour que les messages d'erreur n'apparaissent pas lors de l'arrivée de l'utilisateur sur le formulaire
     // Réinitialiser l'état showErrors lors du montage du composant
     setShowErrors(false);
 
@@ -74,7 +88,6 @@ function EmployeeForm() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setEmployee({ ...employee, [name]: value });
   };
 
@@ -86,13 +99,11 @@ function EmployeeForm() {
 
     // vérifier si toutes les valeurs d'erreurs sont vides:
     if (Object.values(formErrors).some((error) => error !== "")) {
-      // Afficher les messages d'erreurs
       setShowErrors(true);
       return;
     }
-    // Utiliser addEmployee du contexte pour ajouter le nouvel employé
+
     addEmployee(employee);
-    //Utiliser resetEmployee du contexte  pour réinitialiser les valeurs de l'employé
     resetEmployee();
 
     // Cacher les erreurs quand le modale est ouverte

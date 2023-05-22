@@ -1,5 +1,24 @@
 import { validateField } from "../FormValidation/validateField";
 
+/**
+ * @function validateCustomField
+ * @description Validates a custom form field by checking its length and whether it matches a provided regular expression.
+ * @description Valide un champ de formulaire personnalisé en vérifiant sa longueur et s'il correspond à une expression régulière fournie.
+ *
+ * @param {string} value - The value of the field to validate.
+ * @param {number} minLength - The minimum length the field value should have.
+ * @param {RegExp} regex - The regular expression the field value should match.
+ * @param {string} lengthErrorMessage - The error message to return if the field value is shorter than the minimum length.
+ * @param {string} regexErrorMessage - The error message to return if the field value doesn't match the regular expression.
+ * @returns {string} An error message if the field value is invalid, otherwise an empty string.
+ *
+ * @function validateEmployeeForm
+ * @description Validates an employee form by checking the validity of each field.
+ * @description Valide un formulaire d'employé en vérifiant la validité de chaque champ.
+ * @param {Object} employee - The employee data to validate.
+ * @returns {Object} An object containing error messages for each invalid field.
+ */
+
 const validateCustomField = (
   value,
   minLength,
@@ -61,12 +80,6 @@ export const validateEmployeeForm = (employee) => {
       "City is required",
       "Only letters, spaces and hyphens are allowed."
     ),
-    // zipCode: validateCustomField(
-    //   employee.zipCode,
-    //   5,
-    //   /^\d{5}$/,
-    //   "The postal code must consist of five numbers only."
-    // ),
     zipCode:
       employee.zipCode.trim().length !== 5 || !/^\d{5}$/.test(employee.zipCode)
         ? "The postal code must consist of five numbers only."

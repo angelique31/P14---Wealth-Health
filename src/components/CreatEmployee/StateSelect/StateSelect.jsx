@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import StateSelectWrapper from "./StateSelectStyles";
+import StateSelectWrapper from "./StateSelect.styled";
 import { states } from "../../../data/states";
 
 function StateSelect({ name, value, onChange }) {

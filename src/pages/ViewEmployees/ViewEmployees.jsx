@@ -15,6 +15,12 @@ import NavButtons from "../../components/CreatEmployee/NavButtons/NavButtons";
 import EntriesPerPageSelect from "../../components/ViewEmployees/EntriesPerPageSelect/EntriesPerPageSelect";
 import SearchBox from "../../components/ViewEmployees/SearchBox/SearchBox";
 import EmployeeDetailsModal from "../../components/ViewEmployees/EmployeeDetailsModal/EmployeeDetailsModal";
+import {
+  smallScreenColumns,
+  largeScreenColumns,
+  verySmallScreenColumns,
+  verySmallScreenColumnsNoDept,
+} from "../../components/ViewEmployees/SizeScreenColumns/SizeScreenColumns";
 
 // Styles
 import {
@@ -24,15 +30,7 @@ import {
   NoDataP,
   StyledButton,
   DivContainer,
-} from "./ViewEmployeeStyles";
-
-// Autres
-import {
-  smallScreenColumns,
-  largeScreenColumns,
-  verySmallScreenColumns,
-  verySmallScreenColumnsNoDept,
-} from "../../components/ViewEmployees/SizeScreenColumns/SizeScreenColumns";
+} from "./ViewEmployee.styled";
 
 function ViewEmployees() {
   /**
@@ -62,6 +60,7 @@ function ViewEmployees() {
     window.innerWidth < 465
   );
   const navigate = useNavigate();
+
   /**
    * Gestionnaires d'événements pour le redimensionnement de l'écran,
    *
@@ -123,8 +122,7 @@ function ViewEmployees() {
 
   function handleClearData() {
     localStorage.removeItem("employees");
-    // ou localStorage.clear(); si vous voulez effacer toutes les données
-    setEmployees([]); // aussi réinitialiser l'état des employés
+    setEmployees([]); // réinitialiser l'état des employés
     navigate("/");
   }
 

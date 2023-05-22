@@ -1,4 +1,4 @@
-import { Navbar, Logo, LogoImage } from "./NavBarStyles";
+import { Navbar, Logo, LogoImage } from "./NavBar.styled";
 
 function NavBar() {
   return (
