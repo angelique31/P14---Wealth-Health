@@ -13,9 +13,9 @@ Conversion of Jquery plugins by React components.
 - [NodeJS](https://nodejs.org/en/) (v18.12.1)
 - [React](https://fr.reactjs.org/) (v13.4.0)
 - [React-router-dom](https://reactrouter.com/) (v6.9.0)
-- [Prop-types] (https://www.npmjs.com/package/prop-types)
-- [Styled-Components] (https://styled-components.com/)
-- [Vite] (https://vitejs.dev/)
+- [Prop-types](https://www.npmjs.com/package/prop-types)
+- [Styled-Components](https://styled-components.com/)
+- [Vite](https://vitejs.dev/)
 
 ### **How to launch the frontend :**
 
