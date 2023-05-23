@@ -4,7 +4,7 @@ import EmployeeForm from "./pages/EmployeeForm/EmployeeForm";
 import ViewEmployees from "./pages/ViewEmployees/ViewEmployees";
 import { TableHeadStyle } from "./pages/ViewEmployees/ViewEmployee.styled";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import GlobalStyles from "./assets/styles/globalStyles";
+import GlobalStyles from "../src/assets/styles/GlobalStyles";
 
 const App = () => {
   return (
