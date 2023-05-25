@@ -122,7 +122,7 @@ function EmployeeForm() {
       <form onSubmit={handleSubmit}>
         <FormContent>
           <IdentityContent>
-            <Label htmlFor="firstName">
+            <Label>
               First Name
               <InputField
                 autoFocus
