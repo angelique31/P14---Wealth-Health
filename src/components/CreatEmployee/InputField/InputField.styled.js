@@ -5,7 +5,8 @@ export const Input = styled.input`
   border-bottom: 1px solid #000;
   width: 300px;
   font-family: Source Sans Pro, sans-serif;
-  // font-size: 1.3rem;
+  font-size: 1.1rem;
+
   @media (max-width: 530px) {
     width: 234px;
   }

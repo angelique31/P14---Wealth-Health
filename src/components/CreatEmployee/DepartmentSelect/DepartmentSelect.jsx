@@ -20,7 +20,7 @@ import DepartmentSelectWrapper from "./DepartmentSelect.styled.js";
 function DepartmentSelect({ name, value, onChange }) {
   return (
     <DepartmentSelectWrapper name={name} value={value} onChange={onChange}>
-      <option value="">Please choose a Department</option>
+      <option value="">Please select a department</option>
       {departments.map((department) => (
         <option key={department} value={department}>
           {department}

@@ -4,28 +4,20 @@ import EmployeeContext from "../../context/employeeContext";
 import { useNavigate } from "react-router-dom";
 
 // Composants internes
-import StateSelect from "../../components/CreatEmployee/StateSelect/StateSelect";
-import DepartmentSelect from "../../components/CreatEmployee/DepartmentSelect/DepartmentSelect";
-import InputField from "../../components/CreatEmployee/InputField/InputField";
 import NavBar from "../../components/CreatEmployee/NavBar/NavBar";
 import NavButtons from "../../components/CreatEmployee/NavButtons/NavButtons";
 import SaveButton from "../../components/CreatEmployee/SaveButton/SaveButton";
-import ValidationError from "../../components/CreatEmployee/ValidationError/ValidationError";
-import { validateEmployeeForm } from "../../components/CreatEmployee/FormValidation/formValidation";
 
-//Styles
-import {
-  ValidationErrorWrapper,
-  DepartmentErrorWrapper,
-} from "../../components/CreatEmployee/ValidationError/ValidationError.styled";
+import { validateEmployeeForm } from "../../components/CreatEmployee/FormValidation/formValidation";
+import FormField from "../../components/CreatEmployee/FormField/FormField";
+import { DepartmentLabel } from "../../components/CreatEmployee/FormField/FormField.styles";
+
 import {
   FormContent,
   IdentityContent,
   AddressContent,
-  Label,
   DepartmentContainer,
   DepartmentContainerLabel,
-  InputText,
 } from "./EmployeeForm.styled";
 
 // Librairie personnalisée
@@ -122,142 +114,115 @@ function EmployeeForm() {
       <form onSubmit={handleSubmit}>
         <FormContent>
           <IdentityContent>
-            <Label>
-              First Name
-              <InputField
-                autoFocus
-                as={InputText}
-                type="text"
-                name="firstName"
-                id="firstName"
-                value={employee.firstName}
-                onChange={handleChange}
-              />
-            </Label>
+            <FormField
+              label="First Name"
+              type="text"
+              name="firstName"
+              id="firstName"
+              value={employee.firstName}
+              onChange={handleChange}
+              error={errors.firstName}
+              showError={showErrors}
+              autoFocus
+            />
 
-            {showErrors && errors.firstName && (
-              <ValidationError message={errors.firstName} />
-            )}
+            <FormField
+              label="Last Name"
+              type="text"
+              name="lastName"
+              id="lastName"
+              value={employee.lastName}
+              onChange={handleChange}
+              error={errors.lastName}
+              showError={showErrors}
+            />
 
-            <Label htmlFor="lastName">
-              Last Name
-              <InputField
-                as={InputText}
-                type="text"
-                name="lastName"
-                id="lastName"
-                value={employee.lastName}
-                onChange={handleChange}
-              />
-            </Label>
-            {showErrors && errors.lastName && (
-              <ValidationError message={errors.lastName} />
-            )}
-            <Label htmlFor="dateOfBirth">
-              Date of Birth
-              <InputField
-                type="date"
-                name="dateOfBirth"
-                id="dateOfBirth"
-                value={employee.dateOfBirth}
-                onChange={handleChange}
-              />
-            </Label>
-            {showErrors && errors.dateOfBirth && (
-              <ValidationError message={errors.dateOfBirth} />
-            )}
-            <Label htmlFor="startDate">
-              Start Date
-              <InputField
-                type="date"
-                name="startDate"
-                id="startDate"
-                value={employee.startDate}
-                onChange={handleChange}
-              />
-            </Label>
-            {showErrors && errors.startDate && (
-              <ValidationError message={errors.startDate} />
-            )}
+            <FormField
+              label="Date of Birth"
+              type="date"
+              name="dateOfBirth"
+              id="dateOfBirth"
+              value={employee.dateOfBirth}
+              onChange={handleChange}
+              error={errors.dateOfBirth}
+              showError={showErrors}
+            />
+
+            <FormField
+              label="Start Date"
+              type="date"
+              name="startDate"
+              id="startDate"
+              value={employee.startDate}
+              onChange={handleChange}
+              error={errors.startDate}
+              showError={showErrors}
+            />
           </IdentityContent>
           <AddressContent>
-            <Label htmlFor="street">
-              Street
-              <InputField
-                as={InputText}
-                type="text"
-                name="street"
-                id="street"
-                value={employee.street}
-                onChange={handleChange}
-              />
-            </Label>
-            {showErrors && errors.street && (
-              <ValidationError message={errors.street} />
-            )}
-            <Label htmlFor="city">
-              City
-              <InputField
-                as={InputText}
-                type="text"
-                name="city"
-                id="city"
-                value={employee.city}
-                onChange={handleChange}
-              />
-            </Label>
-            {showErrors && errors.city && (
-              <ValidationError message={errors.city} />
-            )}
-            <Label htmlFor="state">
-              State
-              <StateSelect
-                name="state"
-                id="state"
-                value={employee.state}
-                onChange={handleChange}
-              />
-            </Label>
-            {showErrors && errors.state && (
-              <ValidationError message={errors.state} />
-            )}
-            <Label htmlFor="zipCode">
-              Zip code
-              <InputField
-                as={InputText}
-                type="text"
-                name="zipCode"
-                id="zipCode"
-                value={employee.zipCode}
-                onChange={handleChange}
-              />
-            </Label>
-            {showErrors && errors.zipCode && (
-              <ValidationError message={errors.zipCode} />
-            )}
+            <FormField
+              label="Street"
+              type="text"
+              name="street"
+              id="street"
+              value={employee.street}
+              onChange={handleChange}
+              error={errors.street}
+              showError={showErrors}
+            />
+
+            <FormField
+              label="City"
+              type="text"
+              name="city"
+              id="city"
+              value={employee.city}
+              onChange={handleChange}
+              error={errors.city}
+              showError={showErrors}
+            />
+
+            <FormField
+              label="State"
+              type="stateSelect"
+              name="state"
+              id="state"
+              value={employee.state}
+              onChange={handleChange}
+              error={errors.state}
+              showError={showErrors}
+            />
+
+            <FormField
+              label="Zip code"
+              type="text"
+              name="zipCode"
+              id="zipCode"
+              value={employee.zipCode}
+              onChange={handleChange}
+              error={errors.zipCode}
+              showError={showErrors}
+            />
           </AddressContent>
         </FormContent>
         <DepartmentContainer>
           <DepartmentContainerLabel htmlFor="department">
-            Département
-            <DepartmentSelect
+            <FormField
+              labelComponent={DepartmentLabel}
+              label="Département"
+              type="departmentSelect"
               name="department"
               id="department"
               value={employee.department}
               onChange={handleChange}
+              showError={showErrors}
+              error={errors.department}
             />
-            {showErrors && errors.department && (
-              <ValidationErrorWrapper>
-                <DepartmentErrorWrapper>
-                  {errors.department}
-                </DepartmentErrorWrapper>
-              </ValidationErrorWrapper>
-            )}
           </DepartmentContainerLabel>
         </DepartmentContainer>
 
-        <SaveButton onClick={() => {}} />
-
+        {/* <SaveButton onClick={() => {}} /> */}
+        <SaveButton onClick={handleSubmit} />
         <Modal
           isOpen={isModalOpen}
           onClose={handleModalClose}
@@ -272,5 +237,4 @@ function EmployeeForm() {
     </section>
   );
 }
-
 export default EmployeeForm;

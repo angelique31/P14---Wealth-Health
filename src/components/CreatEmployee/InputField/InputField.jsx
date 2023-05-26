@@ -20,7 +20,7 @@ import { Input, Label } from "./InputField.styled";
  * @param {(string|number)} props.value - The current value of the input field.
  * @param {function} props.onChange - The function to call when the input field value changes.
  */
-function InputField({ autoFocus, label, type, name, value, onChange }) {
+function InputField({ autoFocus, label, type, name, id, value, onChange }) {
   //état local maxDate pour stocker la date maximale autorisée
   const [maxDate, setMaxDate] = useState("");
 
@@ -41,6 +41,7 @@ function InputField({ autoFocus, label, type, name, value, onChange }) {
         type={type}
         name={name}
         value={value}
+        id={id}
         onChange={onChange}
         max={name !== "startDate" ? maxDate : undefined}
       />
@@ -55,6 +56,7 @@ InputField.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default InputField;
