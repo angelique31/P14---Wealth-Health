@@ -1,6 +1,6 @@
 import { render, screen, fireEvent} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import EmployeeContext, { EmployeeProvider } from '../src/context/employeeContext';
+import { EmployeeProvider } from '../src/context/employeeContext';
 import EmployeeForm from '../src/pages/EmployeeForm/EmployeeForm';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
