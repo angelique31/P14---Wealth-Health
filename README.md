@@ -2,8 +2,6 @@
 
 ![image](https://github.com/angelique31/P14---Wealth-Health/assets/93211301/e71103af-3a1f-46f8-95d9-e96d404dd1dd)
 
-![image](https://github.com/angelique31/P14---Wealth-Health/assets/93211301/c940a275-f061-45ec-a9e7-a3a56432273e)
-
 ### **_Presentation_**
 
 Conversion of Jquery plugins by React components.
